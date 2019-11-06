@@ -1,0 +1,416 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SarayTapModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Customers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SurName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Phone_Alt" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Reservations" Relationship="Self.FK_Reservations_Customers" FromRole="Customers" ToRole="Reservations" />
+  </EntityType>
+  <EntityType Name="Events">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Pl_Events" Relationship="Self.FK_Pl_Events_Events" FromRole="Events" ToRole="Pl_Events" />
+  </EntityType>
+  <EntityType Name="Managers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SurName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Phone_Alt" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Whatsapp" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Facebook" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Pl_Managers" Relationship="Self.FK_Pl_Managers_Managers" FromRole="Managers" ToRole="Pl_Managers" />
+    <NavigationProperty Name="Man_Rols" Relationship="SarayTapModel.FK_Man_Rols_Managers" FromRole="Managers" ToRole="Man_Rols" />
+  </EntityType>
+  <EntityType Name="Pl_Events">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Palace_Id" Type="Int32" Nullable="false" />
+    <Property Name="Event_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Events" Relationship="Self.FK_Pl_Events_Events" FromRole="Pl_Events" ToRole="Events" />
+    <NavigationProperty Name="Palaces" Relationship="SarayTapModel.FK_Pl_Events_Palaces" FromRole="Pl_Events" ToRole="Palaces" />
+  </EntityType>
+  <EntityType Name="Pl_Managers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Palace_Id" Type="Int32" Nullable="false" />
+    <Property Name="Manager_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Managers" Relationship="Self.FK_Pl_Managers_Managers" FromRole="Pl_Managers" ToRole="Managers" />
+    <NavigationProperty Name="Palaces" Relationship="SarayTapModel.FK_Pl_Managers_Palaces" FromRole="Pl_Managers" ToRole="Palaces" />
+  </EntityType>
+  <EntityType Name="Pl_Services">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Palace_Id" Type="Int32" Nullable="false" />
+    <Property Name="Service_Id" Type="Int32" Nullable="false" />
+    <Property Name="Service_Type" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Service_Types" Relationship="Self.FK_Pl_Services_Service_Types" FromRole="Pl_Services" ToRole="Service_Types" />
+    <NavigationProperty Name="Services" Relationship="Self.FK_Pl_Services_Services" FromRole="Pl_Services" ToRole="Services" />
+    <NavigationProperty Name="Palaces" Relationship="SarayTapModel.FK_Pl_Services_Palaces" FromRole="Pl_Services" ToRole="Palaces" />
+  </EntityType>
+  <EntityType Name="Reservations">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Hall_Id" Type="Int32" Nullable="false" />
+    <Property Name="Customer_Id" Type="Int32" Nullable="false" />
+    <Property Name="Date_Event" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Date_Request" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Status_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Customers" Relationship="Self.FK_Reservations_Customers" FromRole="Reservations" ToRole="Customers" />
+    <NavigationProperty Name="Statuses" Relationship="Self.FK_Reservations_Statuses" FromRole="Reservations" ToRole="Statuses" />
+    <NavigationProperty Name="Pl_Halls" Relationship="SarayTapModel.FK_Reservations_Pl_Halls" FromRole="Reservations" ToRole="Pl_Halls" />
+  </EntityType>
+  <EntityType Name="Service_Types">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Pl_Services" Relationship="Self.FK_Pl_Services_Service_Types" FromRole="Service_Types" ToRole="Pl_Services" />
+  </EntityType>
+  <EntityType Name="Services">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Pl_Services" Relationship="Self.FK_Pl_Services_Services" FromRole="Services" ToRole="Pl_Services" />
+  </EntityType>
+  <EntityType Name="Statuses">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Reservations" Relationship="Self.FK_Reservations_Statuses" FromRole="Statuses" ToRole="Reservations" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_Reservations_Customers">
+    <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+    <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Reservations">
+        <PropertyRef Name="Customer_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pl_Events_Events">
+    <End Role="Events" Type="Self.Events" Multiplicity="1" />
+    <End Role="Pl_Events" Type="Self.Pl_Events" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Events">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Pl_Events">
+        <PropertyRef Name="Event_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pl_Managers_Managers">
+    <End Role="Managers" Type="Self.Managers" Multiplicity="1" />
+    <End Role="Pl_Managers" Type="Self.Pl_Managers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Managers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Pl_Managers">
+        <PropertyRef Name="Manager_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pl_Services_Service_Types">
+    <End Role="Service_Types" Type="Self.Service_Types" Multiplicity="1" />
+    <End Role="Pl_Services" Type="Self.Pl_Services" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service_Types">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Pl_Services">
+        <PropertyRef Name="Service_Type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pl_Services_Services">
+    <End Role="Services" Type="Self.Services" Multiplicity="1" />
+    <End Role="Pl_Services" Type="Self.Pl_Services" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Services">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Pl_Services">
+        <PropertyRef Name="Service_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reservations_Statuses">
+    <End Role="Statuses" Type="Self.Statuses" Multiplicity="1" />
+    <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Statuses">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Reservations">
+        <PropertyRef Name="Status_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SarayTapEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Customers" EntityType="Self.Customers" />
+    <EntitySet Name="Events" EntityType="Self.Events" />
+    <EntitySet Name="Managers" EntityType="Self.Managers" />
+    <EntitySet Name="Pl_Events" EntityType="Self.Pl_Events" />
+    <EntitySet Name="Pl_Managers" EntityType="Self.Pl_Managers" />
+    <EntitySet Name="Pl_Services" EntityType="Self.Pl_Services" />
+    <EntitySet Name="Reservations" EntityType="Self.Reservations" />
+    <EntitySet Name="Service_Types" EntityType="Self.Service_Types" />
+    <EntitySet Name="Services" EntityType="Self.Services" />
+    <EntitySet Name="Statuses" EntityType="Self.Statuses" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <AssociationSet Name="FK_Reservations_Customers" Association="Self.FK_Reservations_Customers">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="Reservations" EntitySet="Reservations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pl_Events_Events" Association="Self.FK_Pl_Events_Events">
+      <End Role="Events" EntitySet="Events" />
+      <End Role="Pl_Events" EntitySet="Pl_Events" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pl_Managers_Managers" Association="Self.FK_Pl_Managers_Managers">
+      <End Role="Managers" EntitySet="Managers" />
+      <End Role="Pl_Managers" EntitySet="Pl_Managers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pl_Services_Service_Types" Association="Self.FK_Pl_Services_Service_Types">
+      <End Role="Service_Types" EntitySet="Service_Types" />
+      <End Role="Pl_Services" EntitySet="Pl_Services" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pl_Services_Services" Association="Self.FK_Pl_Services_Services">
+      <End Role="Services" EntitySet="Services" />
+      <End Role="Pl_Services" EntitySet="Pl_Services" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reservations_Statuses" Association="Self.FK_Reservations_Statuses">
+      <End Role="Statuses" EntitySet="Statuses" />
+      <End Role="Reservations" EntitySet="Reservations" />
+    </AssociationSet>
+    <EntitySet Name="Man_Rols" EntityType="SarayTapModel.Man_Rols" />
+    <EntitySet Name="Rols" EntityType="SarayTapModel.Rols" />
+    <AssociationSet Name="FK_Man_Rols_Managers" Association="SarayTapModel.FK_Man_Rols_Managers">
+      <End Role="Managers" EntitySet="Managers" />
+      <End Role="Man_Rols" EntitySet="Man_Rols" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Man_Rols_Rols" Association="SarayTapModel.FK_Man_Rols_Rols">
+      <End Role="Rols" EntitySet="Rols" />
+      <End Role="Man_Rols" EntitySet="Man_Rols" />
+    </AssociationSet>
+    <EntitySet Name="Palaces" EntityType="SarayTapModel.Palaces" />
+    <AssociationSet Name="FK_Pl_Events_Palaces" Association="SarayTapModel.FK_Pl_Events_Palaces">
+      <End Role="Palaces" EntitySet="Palaces" />
+      <End Role="Pl_Events" EntitySet="Pl_Events" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pl_Managers_Palaces" Association="SarayTapModel.FK_Pl_Managers_Palaces">
+      <End Role="Palaces" EntitySet="Palaces" />
+      <End Role="Pl_Managers" EntitySet="Pl_Managers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pl_Services_Palaces" Association="SarayTapModel.FK_Pl_Services_Palaces">
+      <End Role="Palaces" EntitySet="Palaces" />
+      <End Role="Pl_Services" EntitySet="Pl_Services" />
+    </AssociationSet>
+    <EntitySet Name="Images" EntityType="SarayTapModel.Images" />
+    <EntitySet Name="Pl_Halls" EntityType="SarayTapModel.Pl_Halls" />
+    <AssociationSet Name="FK_Pl_Halls_Images" Association="SarayTapModel.FK_Pl_Halls_Images">
+      <End Role="Images" EntitySet="Images" />
+      <End Role="Pl_Halls" EntitySet="Pl_Halls" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pl_Halls_Palaces" Association="SarayTapModel.FK_Pl_Halls_Palaces">
+      <End Role="Palaces" EntitySet="Palaces" />
+      <End Role="Pl_Halls" EntitySet="Pl_Halls" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reservations_Pl_Halls" Association="SarayTapModel.FK_Reservations_Pl_Halls">
+      <End Role="Pl_Halls" EntitySet="Pl_Halls" />
+      <End Role="Reservations" EntitySet="Reservations" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Man_Rols">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Rols_Id" Type="Int32" Nullable="false" />
+    <Property Name="Managers_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Managers" Relationship="SarayTapModel.FK_Man_Rols_Managers" FromRole="Man_Rols" ToRole="Managers" />
+    <NavigationProperty Name="Rols" Relationship="SarayTapModel.FK_Man_Rols_Rols" FromRole="Man_Rols" ToRole="Rols" />
+  </EntityType>
+  <EntityType Name="Rols">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Rol_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Man_Rols" Relationship="SarayTapModel.FK_Man_Rols_Rols" FromRole="Rols" ToRole="Man_Rols" />
+  </EntityType>
+  <Association Name="FK_Man_Rols_Managers">
+    <End Type="SarayTapModel.Managers" Role="Managers" Multiplicity="1" />
+    <End Type="SarayTapModel.Man_Rols" Role="Man_Rols" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Managers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Man_Rols">
+        <PropertyRef Name="Managers_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Man_Rols_Rols">
+    <End Type="SarayTapModel.Rols" Role="Rols" Multiplicity="1" />
+    <End Type="SarayTapModel.Man_Rols" Role="Man_Rols" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rols">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Man_Rols">
+        <PropertyRef Name="Rols_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Palaces">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Location" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Longitude" Type="Double" Nullable="false" />
+    <Property Name="Latitude" Type="Double" Nullable="false" />
+    <Property Name="Price_Min" Type="Int32" Nullable="false" />
+    <Property Name="Price_Max" Type="Int32" Nullable="false" />
+    <Property Name="Image_Url" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Pl_Events" Relationship="SarayTapModel.FK_Pl_Events_Palaces" FromRole="Palaces" ToRole="Pl_Events" />
+    <NavigationProperty Name="Pl_Managers" Relationship="SarayTapModel.FK_Pl_Managers_Palaces" FromRole="Palaces" ToRole="Pl_Managers" />
+    <NavigationProperty Name="Pl_Services" Relationship="SarayTapModel.FK_Pl_Services_Palaces" FromRole="Palaces" ToRole="Pl_Services" />
+    <NavigationProperty Name="Pl_Halls" Relationship="SarayTapModel.FK_Pl_Halls_Palaces" FromRole="Palaces" ToRole="Pl_Halls" />
+  </EntityType>
+  <Association Name="FK_Pl_Events_Palaces">
+    <End Type="SarayTapModel.Palaces" Role="Palaces" Multiplicity="1" />
+    <End Type="SarayTapModel.Pl_Events" Role="Pl_Events" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Palaces">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Pl_Events">
+        <PropertyRef Name="Palace_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pl_Managers_Palaces">
+    <End Type="SarayTapModel.Palaces" Role="Palaces" Multiplicity="1" />
+    <End Type="SarayTapModel.Pl_Managers" Role="Pl_Managers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Palaces">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Pl_Managers">
+        <PropertyRef Name="Palace_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pl_Services_Palaces">
+    <End Type="SarayTapModel.Palaces" Role="Palaces" Multiplicity="1" />
+    <End Type="SarayTapModel.Pl_Services" Role="Pl_Services" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Palaces">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Pl_Services">
+        <PropertyRef Name="Palace_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Images">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Pl_Halls_Id" Type="Int32" Nullable="false" />
+    <Property Name="Image_Url" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Pl_Halls" Relationship="SarayTapModel.FK_Pl_Halls_Images" FromRole="Images" ToRole="Pl_Halls" />
+  </EntityType>
+  <EntityType Name="Pl_Halls">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Palace_Id" Type="Int32" Nullable="false" />
+    <Property Name="Min_Capacity" Type="Int32" Nullable="false" />
+    <Property Name="Max_Capacity" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Image_Id" Type="Int32" />
+    <NavigationProperty Name="Images" Relationship="SarayTapModel.FK_Pl_Halls_Images" FromRole="Pl_Halls" ToRole="Images" />
+    <NavigationProperty Name="Palaces" Relationship="SarayTapModel.FK_Pl_Halls_Palaces" FromRole="Pl_Halls" ToRole="Palaces" />
+    <NavigationProperty Name="Reservations" Relationship="SarayTapModel.FK_Reservations_Pl_Halls" FromRole="Pl_Halls" ToRole="Reservations" />
+  </EntityType>
+  <Association Name="FK_Pl_Halls_Images">
+    <End Type="SarayTapModel.Images" Role="Images" Multiplicity="0..1" />
+    <End Type="SarayTapModel.Pl_Halls" Role="Pl_Halls" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Images">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Pl_Halls">
+        <PropertyRef Name="Image_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pl_Halls_Palaces">
+    <End Type="SarayTapModel.Palaces" Role="Palaces" Multiplicity="1" />
+    <End Type="SarayTapModel.Pl_Halls" Role="Pl_Halls" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Palaces">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Pl_Halls">
+        <PropertyRef Name="Palace_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reservations_Pl_Halls">
+    <End Type="SarayTapModel.Pl_Halls" Role="Pl_Halls" Multiplicity="1" />
+    <End Type="SarayTapModel.Reservations" Role="Reservations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pl_Halls">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Reservations">
+        <PropertyRef Name="Hall_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

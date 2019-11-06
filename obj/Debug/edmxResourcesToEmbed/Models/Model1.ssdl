@@ -1,0 +1,388 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SarayTapModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Customers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="SurName" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="Phone_Alt" Type="nvarchar" MaxLength="15" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Events">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Images">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Pl_Halls_Id" Type="int" Nullable="false" />
+    <Property Name="Image_Url" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Man_Rols">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Rols_Id" Type="int" Nullable="false" />
+    <Property Name="Managers_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Managers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="SurName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="Phone_Alt" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="Whatsapp" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="Facebook" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Palaces">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Location" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Longitude" Type="float" Nullable="false" />
+    <Property Name="Latitude" Type="float" Nullable="false" />
+    <Property Name="Price_Min" Type="int" Nullable="false" />
+    <Property Name="Price_Max" Type="int" Nullable="false" />
+    <Property Name="Image_Url" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Pl_Events">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Palace_Id" Type="int" Nullable="false" />
+    <Property Name="Event_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Pl_Halls">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Palace_Id" Type="int" Nullable="false" />
+    <Property Name="Min_Capacity" Type="int" Nullable="false" />
+    <Property Name="Max_Capacity" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Image_Id" Type="int" />
+  </EntityType>
+  <EntityType Name="Pl_Managers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Palace_Id" Type="int" Nullable="false" />
+    <Property Name="Manager_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Pl_Services">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Palace_Id" Type="int" Nullable="false" />
+    <Property Name="Service_Id" Type="int" Nullable="false" />
+    <Property Name="Service_Type" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Reservations">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Hall_Id" Type="int" Nullable="false" />
+    <Property Name="Customer_Id" Type="int" Nullable="false" />
+    <Property Name="Date_Event" Type="date" Nullable="false" />
+    <Property Name="Date_Request" Type="datetime" Nullable="false" />
+    <Property Name="Status_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Rols">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Rol_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Service_Types">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Services">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Statuses">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_Man_Rols_Managers">
+    <End Role="Managers" Type="Self.Managers" Multiplicity="1" />
+    <End Role="Man_Rols" Type="Self.Man_Rols" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Managers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Man_Rols">
+        <PropertyRef Name="Managers_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Man_Rols_Rols">
+    <End Role="Rols" Type="Self.Rols" Multiplicity="1" />
+    <End Role="Man_Rols" Type="Self.Man_Rols" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rols">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Man_Rols">
+        <PropertyRef Name="Rols_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pl_Events_Events">
+    <End Role="Events" Type="Self.Events" Multiplicity="1" />
+    <End Role="Pl_Events" Type="Self.Pl_Events" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Events">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Pl_Events">
+        <PropertyRef Name="Event_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pl_Events_Palaces">
+    <End Role="Palaces" Type="Self.Palaces" Multiplicity="1" />
+    <End Role="Pl_Events" Type="Self.Pl_Events" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Palaces">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Pl_Events">
+        <PropertyRef Name="Palace_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pl_Halls_Images">
+    <End Role="Images" Type="Self.Images" Multiplicity="0..1" />
+    <End Role="Pl_Halls" Type="Self.Pl_Halls" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Images">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Pl_Halls">
+        <PropertyRef Name="Image_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pl_Halls_Palaces">
+    <End Role="Palaces" Type="Self.Palaces" Multiplicity="1" />
+    <End Role="Pl_Halls" Type="Self.Pl_Halls" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Palaces">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Pl_Halls">
+        <PropertyRef Name="Palace_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pl_Managers_Managers">
+    <End Role="Managers" Type="Self.Managers" Multiplicity="1" />
+    <End Role="Pl_Managers" Type="Self.Pl_Managers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Managers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Pl_Managers">
+        <PropertyRef Name="Manager_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pl_Managers_Palaces">
+    <End Role="Palaces" Type="Self.Palaces" Multiplicity="1" />
+    <End Role="Pl_Managers" Type="Self.Pl_Managers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Palaces">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Pl_Managers">
+        <PropertyRef Name="Palace_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pl_Services_Palaces">
+    <End Role="Palaces" Type="Self.Palaces" Multiplicity="1" />
+    <End Role="Pl_Services" Type="Self.Pl_Services" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Palaces">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Pl_Services">
+        <PropertyRef Name="Palace_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pl_Services_Service_Types">
+    <End Role="Service_Types" Type="Self.Service_Types" Multiplicity="1" />
+    <End Role="Pl_Services" Type="Self.Pl_Services" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service_Types">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Pl_Services">
+        <PropertyRef Name="Service_Type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pl_Services_Services">
+    <End Role="Services" Type="Self.Services" Multiplicity="1" />
+    <End Role="Pl_Services" Type="Self.Pl_Services" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Services">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Pl_Services">
+        <PropertyRef Name="Service_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reservations_Customers">
+    <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+    <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Reservations">
+        <PropertyRef Name="Customer_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reservations_Pl_Halls">
+    <End Role="Pl_Halls" Type="Self.Pl_Halls" Multiplicity="1" />
+    <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pl_Halls">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Reservations">
+        <PropertyRef Name="Hall_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reservations_Statuses">
+    <End Role="Statuses" Type="Self.Statuses" Multiplicity="1" />
+    <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Statuses">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Reservations">
+        <PropertyRef Name="Status_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SarayTapModelStoreContainer">
+    <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Images" EntityType="Self.Images" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Man_Rols" EntityType="Self.Man_Rols" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Managers" EntityType="Self.Managers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Palaces" EntityType="Self.Palaces" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pl_Events" EntityType="Self.Pl_Events" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pl_Halls" EntityType="Self.Pl_Halls" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pl_Managers" EntityType="Self.Pl_Managers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pl_Services" EntityType="Self.Pl_Services" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Reservations" EntityType="Self.Reservations" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rols" EntityType="Self.Rols" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Service_Types" EntityType="Self.Service_Types" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Services" EntityType="Self.Services" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Statuses" EntityType="Self.Statuses" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Man_Rols_Managers" Association="Self.FK_Man_Rols_Managers">
+      <End Role="Managers" EntitySet="Managers" />
+      <End Role="Man_Rols" EntitySet="Man_Rols" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Man_Rols_Rols" Association="Self.FK_Man_Rols_Rols">
+      <End Role="Rols" EntitySet="Rols" />
+      <End Role="Man_Rols" EntitySet="Man_Rols" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pl_Events_Events" Association="Self.FK_Pl_Events_Events">
+      <End Role="Events" EntitySet="Events" />
+      <End Role="Pl_Events" EntitySet="Pl_Events" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pl_Events_Palaces" Association="Self.FK_Pl_Events_Palaces">
+      <End Role="Palaces" EntitySet="Palaces" />
+      <End Role="Pl_Events" EntitySet="Pl_Events" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pl_Halls_Images" Association="Self.FK_Pl_Halls_Images">
+      <End Role="Images" EntitySet="Images" />
+      <End Role="Pl_Halls" EntitySet="Pl_Halls" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pl_Halls_Palaces" Association="Self.FK_Pl_Halls_Palaces">
+      <End Role="Palaces" EntitySet="Palaces" />
+      <End Role="Pl_Halls" EntitySet="Pl_Halls" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pl_Managers_Managers" Association="Self.FK_Pl_Managers_Managers">
+      <End Role="Managers" EntitySet="Managers" />
+      <End Role="Pl_Managers" EntitySet="Pl_Managers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pl_Managers_Palaces" Association="Self.FK_Pl_Managers_Palaces">
+      <End Role="Palaces" EntitySet="Palaces" />
+      <End Role="Pl_Managers" EntitySet="Pl_Managers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pl_Services_Palaces" Association="Self.FK_Pl_Services_Palaces">
+      <End Role="Palaces" EntitySet="Palaces" />
+      <End Role="Pl_Services" EntitySet="Pl_Services" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pl_Services_Service_Types" Association="Self.FK_Pl_Services_Service_Types">
+      <End Role="Service_Types" EntitySet="Service_Types" />
+      <End Role="Pl_Services" EntitySet="Pl_Services" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pl_Services_Services" Association="Self.FK_Pl_Services_Services">
+      <End Role="Services" EntitySet="Services" />
+      <End Role="Pl_Services" EntitySet="Pl_Services" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reservations_Customers" Association="Self.FK_Reservations_Customers">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="Reservations" EntitySet="Reservations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reservations_Pl_Halls" Association="Self.FK_Reservations_Pl_Halls">
+      <End Role="Pl_Halls" EntitySet="Pl_Halls" />
+      <End Role="Reservations" EntitySet="Reservations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reservations_Statuses" Association="Self.FK_Reservations_Statuses">
+      <End Role="Statuses" EntitySet="Statuses" />
+      <End Role="Reservations" EntitySet="Reservations" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

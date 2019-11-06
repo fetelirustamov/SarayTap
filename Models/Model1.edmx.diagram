@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d673a59a60324f22a8470f727e914188" Name="Diagram1">
+        <EntityTypeShape EntityType="SarayTapModel.Customers" Width="1.5" PointX="3" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SarayTapModel.Events" Width="1.5" PointX="0.75" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SarayTapModel.Managers" Width="1.5" PointX="3.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SarayTapModel.Pl_Events" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SarayTapModel.Pl_Managers" Width="1.5" PointX="6" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SarayTapModel.Pl_Services" Width="1.5" PointX="3" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SarayTapModel.Reservations" Width="1.5" PointX="5.25" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SarayTapModel.Service_Types" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SarayTapModel.Services" Width="1.5" PointX="0.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SarayTapModel.Statuses" Width="1.5" PointX="3" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SarayTapModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="SarayTapModel.FK_Reservations_Customers" ManuallyRouted="false" />
+        <AssociationConnector Association="SarayTapModel.FK_Pl_Events_Events" ManuallyRouted="false" />
+        <AssociationConnector Association="SarayTapModel.FK_Pl_Managers_Managers" ManuallyRouted="false" />
+        <AssociationConnector Association="SarayTapModel.FK_Pl_Services_Service_Types" ManuallyRouted="false" />
+        <AssociationConnector Association="SarayTapModel.FK_Pl_Services_Services" ManuallyRouted="false" />
+        <AssociationConnector Association="SarayTapModel.FK_Reservations_Statuses" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SarayTapModel.Man_Rols" Width="1.5" PointX="6" PointY="13.125" />
+        <EntityTypeShape EntityType="SarayTapModel.Rols" Width="1.5" PointX="3.75" PointY="23.375" />
+        <AssociationConnector Association="SarayTapModel.FK_Man_Rols_Managers" />
+        <AssociationConnector Association="SarayTapModel.FK_Man_Rols_Rols" />
+        <EntityTypeShape EntityType="SarayTapModel.Palaces" Width="1.5" PointX="0.75" PointY="3.875" />
+        <AssociationConnector Association="SarayTapModel.FK_Pl_Events_Palaces" />
+        <AssociationConnector Association="SarayTapModel.FK_Pl_Managers_Palaces" />
+        <AssociationConnector Association="SarayTapModel.FK_Pl_Services_Palaces" />
+        <EntityTypeShape EntityType="SarayTapModel.Images" Width="1.5" PointX="0.75" PointY="15.625" />
+        <EntityTypeShape EntityType="SarayTapModel.Pl_Halls" Width="1.5" PointX="3" PointY="8.125" />
+        <AssociationConnector Association="SarayTapModel.FK_Pl_Halls_Images" />
+        <AssociationConnector Association="SarayTapModel.FK_Pl_Halls_Palaces" />
+        <AssociationConnector Association="SarayTapModel.FK_Reservations_Pl_Halls" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
